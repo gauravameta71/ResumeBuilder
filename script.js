@@ -211,3 +211,33 @@ function saveresume() {
   info.value = value1;
 }
 
+function printpdf() {
+  var content = document.getElementById("resume");
+
+  // Get all buttons and input checkboxes within the #print section
+  const allButtons = document.querySelectorAll("#print button");
+  const allInputCheckboxes = document.querySelectorAll(
+    "#print .input-checkbox"
+  );
+
+  // Hide buttons and input checkboxes
+  allButtons.forEach((button) => {
+    button.style.display = "none";
+  });
+  allInputCheckboxes.forEach((input) => {
+    input.style.display = "none";
+  });
+
+  // Generate PDF
+  html2pdf(content, {
+    html2canvas: { scale: 1, logging: true, dpi: 500 },
+  });
+
+  // Show buttons and input checkboxes again
+  allButtons.forEach((button) => {
+    button.style.display = "initial";
+  });
+  allInputCheckboxes.forEach((input) => {
+    input.style.display = "initial";
+  });
+}
